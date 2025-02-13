@@ -1,4 +1,4 @@
-package net.naji.PatternComposit;
+package net.naji.patternComposit;
 
 public class Rectangle extends Figure {
     private Point coinHautGauche; // Le coin supérieur gauche

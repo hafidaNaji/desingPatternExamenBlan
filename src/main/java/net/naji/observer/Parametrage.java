@@ -1,4 +1,4 @@
-package net.naji.Observer;
+package net.naji.observer;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package net.naji.PatternComposit;
+package net.naji.patternComposit;
 
 public class Point {
     private double x;

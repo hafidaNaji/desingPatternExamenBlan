@@ -1,4 +1,4 @@
-package net.naji.PatternComposit;
+package net.naji.patternComposit;
 
 import java.util.ArrayList;
 import java.util.List;

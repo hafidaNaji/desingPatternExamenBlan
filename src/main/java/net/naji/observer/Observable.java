@@ -1,4 +1,4 @@
-package net.naji.Observer;
+package net.naji.observer;
 
 public interface Observable {
     void addObserver(Observer observer); // Ajouter un observateur

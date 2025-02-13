@@ -14,6 +14,7 @@
 <h2>Desing Pattern Strategy</h2>
 <h3>il définit une famille d'algorithme  et encapsule chacun</h3>
 <h3><br> et les rendre interchangeable des algorithmes de traitement sur le dessin</h3>
+<img src="/captures/3.3Capture.PNG">
 <h2>Desing Pattern Proxy</h2>
 <h3><br> il controle l'accés à Dessin et utilisedes contaraintes comme l'ahthentification et la journalisation <h3>
 <img src="/captures/3.Capture.PNG">

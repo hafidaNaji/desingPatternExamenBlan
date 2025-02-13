@@ -1,5 +1,5 @@
-package net.naji.PatternComposit;
-import net.naji.Observer.Observer;
+package net.naji.patternComposit;
+import net.naji.observer.Observer;
 
 public abstract class Figure implements Observer {
     private String couleurContour;

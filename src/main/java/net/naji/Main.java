@@ -1,8 +1,12 @@
 package net.naji;
 
-import net.naji.Observer.Observer;
-import net.naji.PatternComposit.*;
-import net.naji.Observer.*;
+import net.naji.observer.Observer;
+import net.naji.patternComposit.*;
+import net.naji.observer.*;
+import net.naji.strategy.Dessin;
+import net.naji.strategy.StrategyImpA;
+import net.naji.strategy.StrategyImpB;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +27,7 @@ public class Main {
         cercle1.dessiner();
         rectangle1.dessiner();
         System.out.println("===========Pattern Observer============");
+
         // Ajout des figures à la liste des observateurs
         List<Observer> observers = new ArrayList<>();
         observers.add(cercle1);
@@ -48,7 +53,24 @@ public class Main {
         // Affichage des figures après mise à jour
         cercle1.dessiner();
         rectangle1.dessiner();
+
+        System.out.println("===========Pattern Strategy============");
+
+        // Création d'un dessin et ajout des figures
+        Dessin dessin = new Dessin();
+        dessin.ajouterFigure(cercle1);
+        dessin.ajouterFigure(rectangle1);
+
+        // Choisir la stratégie : Affichage des figures
+        dessin.setStrategy(new StrategyImpA());  // Stratégie A (Affichage)
+
+        // Appliquer la stratégie : Affichage
+        dessin.traiter();  // Utilise la stratégie d'affichage
+
+        // Changer la stratégie : Sérialisation du dessin
+        dessin.setStrategy(new StrategyImpB());  // Stratégie B (Sérialisation)
+
+        // Appliquer la stratégie : Sérialisation
+        dessin.traiter();  // Utilise la stratégie de sérialisation
     }
 }
-
-

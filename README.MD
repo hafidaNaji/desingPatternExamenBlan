@@ -2,20 +2,23 @@
 <h3>Il organise les objets en structure arborescente afin de représenter une hiérarchie<br></h3>
 <h3>il est utilisé pour gérer les groupes de Figures</h3>
 <img src="/captures/1.Capture.PNG">
-<img src="/captures/1.1Capture.PNG">
-
 <h2>Desing Pattern Observer</h2>
 <h3>il définit une relation entre les objets de type un à plusieurs<br></h3>
 <h3>lorsqu'un objet change l'état , tous ce qui en dépendent en soinent informés</h3>
 <h3><br> et mis à jour <h3>
 <h3><br> ici il est utilisé pour notifier les figures lorsque les paramètres par défaut changent <h3>
 <img src="/captures/2.Capture.PNG">
-<img src="/captures/2.2Capture.PNG">
 <h2>Desing Pattern Strategy</h2>
 <h3>il définit une famille d'algorithme  et encapsule chacun</h3>
 <h3><br> et les rendre interchangeable des algorithmes de traitement sur le dessin</h3>
-<img src="/captures/3.3Capture.PNG">
 <h2>Desing Pattern Proxy</h2>
 <h3><br> il controle l'accés à Dessin et utilisedes contaraintes comme l'ahthentification et la journalisation <h3>
 <img src="/captures/3.Capture.PNG">
+<h2>les implementations du modèle</h2>
+<h3>Pattern Composit</h3>
+<img src="/captures/4.Capture.PNG">
+<h3>Pattern Observer</h3>
+<img src="/captures/5.Capture.PNG">
+<h3>Pattern Strategy</h3>
+<img src="/captures/6.Capture.PNG">
 

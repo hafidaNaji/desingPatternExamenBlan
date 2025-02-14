@@ -3,7 +3,7 @@ package net.naji.proxy;
 import net.naji.patternComposit.Figure;
 import net.naji.strategy.DessinInterface;
 
-public class SecurityProxy implements DessinInterface {
+public class ProxyDessin implements DessinInterface {
     @Override
     public void ajouterFigure(Figure figure) {
 

@@ -6,14 +6,14 @@ import net.naji.observer.*;
 import net.naji.strategy.Dessin;
 import net.naji.strategy.StrategyImpA;
 import net.naji.strategy.StrategyImpB;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("===========Pattern Composit============");
+       System.out.println("===========Pattern Composit============");
 
         // Création de points pour les figures
         Point centreCercle = new Point(2, 3);  // Le centre du cercle
@@ -26,6 +26,7 @@ public class Main {
         // Affichage des figures avant mise à jour
         cercle1.dessiner();
         rectangle1.dessiner();
+
         System.out.println("===========Pattern Observer============");
 
         // Ajout des figures à la liste des observateurs
@@ -72,5 +73,6 @@ public class Main {
 
         // Appliquer la stratégie : Sérialisation
         dessin.traiter();  // Utilise la stratégie de sérialisation
+
     }
 }

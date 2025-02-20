@@ -3,76 +3,89 @@ package net.naji;
 import net.naji.observer.Observer;
 import net.naji.patternComposit.*;
 import net.naji.observer.*;
+import net.naji.progOrAspect.SessionUtilisateur;
+import net.naji.progOrAspect.Utilisateur;
 import net.naji.strategy.Dessin;
 import net.naji.strategy.StrategyImpA;
 import net.naji.strategy.StrategyImpB;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class Main {
-    public static void main(String[] args) {
-       System.out.println("===========Pattern Composit============");
+ public static void main(String[] args) {
+  System.out.println("===========Pattern Strategy============");
 
-        // Création de points pour les figures
-        Point centreCercle = new Point(2, 3);  // Le centre du cercle
-        Point coinRectangle = new Point(1, 1); // Le coin du rectangle
+  // Création de points pour les figures
+  Point centreCercle = new Point(2, 3);
+  Point coinRectangle = new Point(1, 1);
 
-        // Création de figures individuelles avec les bons constructeurs
-        Figure cercle1 = new Cercle("Rouge", "Jaune", 2, centreCercle, 5);  // Constructeur de Cercle
-        Figure rectangle1 = new Rectangle("Bleu", "Vert", 3, coinRectangle, 4, 6);  // Constructeur de Rectangle
+  // Création de l'objet Parametrage
 
-        // Affichage des figures avant mise à jour
-        cercle1.dessiner();
-        rectangle1.dessiner();
+  // Création des figures avec le Parametrage
+  Figure cercle1 = new Cercle("Rouge", "Jaune", 2.0, centreCercle, 5.0);
+  Figure rectangle1 = new Rectangle("Bleu", "Vert", 3.0, coinRectangle, 4.0, 6.0);
 
-        System.out.println("===========Pattern Observer============");
+  // Affichage des figures avant mise à jour
+  cercle1.dessiner();
+  rectangle1.dessiner();
 
-        // Ajout des figures à la liste des observateurs
-        List<Observer> observers = new ArrayList<>();
-        observers.add(cercle1);
-        observers.add(rectangle1);
+  System.out.println("===========Pattern Observer============");
 
-        // Création du Parametrage avec des paramètres à changer
-        Parametrage parametrage = new Parametrage(2.5, "Violet", "Orange");
+  // Ajout des figures aux observateurs
+  List<Observer> observers = new ArrayList<>();
+  observers.add(cercle1);
+  observers.add(rectangle1);
 
-        // Ajout des observateurs au Parametrage
-        for (Observer observer : observers) {
-            parametrage.addObserver(observer);
-        }
+  // Parametrage pour la mise à jour des figures
+  Parametrage parametrage1 = new Parametrage(2.5, "Violet", "Orange");
 
-        // Notifier les observateurs avant changement
-        System.out.println("\n===========Mise à jour des paramètres============");
-        parametrage.setCouleurContour("Rouge");
-        parametrage.setCouleurRemplissage("Gris");
-        parametrage.setEpaisseurContour(5.0);
+  // Ajout des observateurs au Parametrage
+  for (Observer observer : observers) {
+   parametrage1.addObserver(observer);
+  }
 
-        // Notifier tous les observateurs (les figures) pour les mettre à jour
-        parametrage.notifyObservers();
+  System.out.println("\n===========Mise à jour des paramètres============");
 
-        // Affichage des figures après mise à jour
-        cercle1.dessiner();
-        rectangle1.dessiner();
+  // Mise à jour des paramètres du Parametrage
+  parametrage1.setCouleurContour("Rouge");
+  parametrage1.setCouleurRemplissage("Gris");
+  parametrage1.setEpaisseurContour(5.0);
+  parametrage1.notifyObservers();
 
-        System.out.println("===========Pattern Strategy============");
+  // Affichage des figures après mise à jour
+  cercle1.dessiner();
+  rectangle1.dessiner();
 
-        // Création d'un dessin et ajout des figures
-        Dessin dessin = new Dessin();
-        dessin.ajouterFigure(cercle1);
-        dessin.ajouterFigure(rectangle1);
+  System.out.println("===========Pattern Strategy============");
 
-        // Choisir la stratégie : Affichage des figures
-        dessin.setStrategy(new StrategyImpA());  // Stratégie A (Affichage)
+  // Création du dessin et ajout des figures
+  Dessin dessin = new Dessin();
+  dessin.ajouterFigure(cercle1);
+  dessin.ajouterFigure(rectangle1);
 
-        // Appliquer la stratégie : Affichage
-        dessin.traiter();  // Utilise la stratégie d'affichage
+  // Choisir la stratégie d'affichage
+  dessin.setStrategy(new StrategyImpA());
+  dessin.traiter();  // Affichage des figures
 
-        // Changer la stratégie : Sérialisation du dessin
-        dessin.setStrategy(new StrategyImpB());  // Stratégie B (Sérialisation)
+  // Stratégie de sérialisation
+  dessin.setStrategy(new StrategyImpB());
+  dessin.traiter();  // Sérialisation des figures
 
-        // Appliquer la stratégie : Sérialisation
-        dessin.traiter();  // Utilise la stratégie de sérialisation
+  System.out.println("*****************AspectJ***************");
 
-    }
+  // Utilisateur avec rôle ADMIN
+  Utilisateur admin = new Utilisateur("admin", "ADMIN");
+  SessionUtilisateur.connecter(admin);
+  dessin.ajouterFigure(new Cercle("Noir", "Blanc", 1.0, new Point(0, 0), 5.0));  // Devrait fonctionner
+
+  // Utilisateur sans rôle ADMIN
+  Utilisateur user = new Utilisateur("user", "USER");
+  SessionUtilisateur.connecter(user);
+
+  try {
+   dessin.ajouterFigure(new Rectangle("Noir", "Blanc", 1.0, new Point(0, 0), 10.0, 20.0));  // Devrait échouer
+  } catch (SecurityException e) {
+   System.out.println(e.getMessage());  // Affiche "Accès refusé : Vous n'avez pas les droits nécessaires."
+  }
+ }
 }

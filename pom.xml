@@ -16,8 +16,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -26,6 +26,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.32</version> <!-- Utilisez la version la plus récente disponible -->
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.32</version>
         </dependency>
 
         <!-- Spring Boot Starter AOP -->
@@ -45,16 +55,44 @@
 
     <build>
         <plugins>
-            <!-- Plugin Maven Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.8.1</version>
                 <configuration>
-                    <source>21</source>
-                    <target>21</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <compilerArguments>
+                        <Xlint>all</Xlint>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+
+            <!-- AspectJ Maven Plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>aspectj-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <complianceLevel>1.8</complianceLevel>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <aspectLibraries>
+                        <aspectLibrary>
+                            <groupId>net.naji</groupId>
+                            <artifactId>desingPatternExamenBlan</artifactId>
+                        </aspectLibrary>
+                    </aspectLibraries>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
 </project>

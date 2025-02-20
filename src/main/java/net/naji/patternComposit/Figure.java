@@ -1,15 +1,23 @@
 package net.naji.patternComposit;
 import net.naji.observer.Observer;
+import net.naji.observer.Parametrage;
 
 public abstract class Figure implements Observer {
     private String couleurContour;
     private String couleurRemplissage;
     private double epaisseurContour;
+    private Parametrage parametrage; // Référence à Parametrage
+
 
     public Figure(String couleurContour, String couleurRemplissage, double epaisseurContour) {
         this.couleurContour = couleurContour;
         this.couleurRemplissage = couleurRemplissage;
         this.epaisseurContour = epaisseurContour;
+        this.parametrage = parametrage; // Initialisation de l'objet Parametrage
+    }
+    // Méthode qui va accéder à l'objet Parametrage
+    public Parametrage getParametrage() {
+        return parametrage;
     }
     // Méthodes abstraites que chaque figure devra implémenter
     public abstract double calculerSurface();
@@ -19,13 +27,18 @@ public abstract class Figure implements Observer {
     // Méthode de l'interface Observer qui sera appelée lorsque les paramètres changent
     @Override
     public void update() {
-        // Mettre à jour les propriétés de la figure lorsque le paramétrage change
-        // Par exemple, ici on met à jour les couleurs et l'épaisseur du contour
-        System.out.println("Mise à jour des paramètres de la figure...");
-        this.couleurContour = "Couleur mise à jour";  // Remplacez par les valeurs réelles du Parametrage
-        this.couleurRemplissage = "Couleur mise à jour";  // Remplacez par les valeurs réelles
-        this.epaisseurContour = 2.0;  // Remplacez par la nouvelle épaisseur du contour
+        // Mettre à jour les propriétés de la figure avec les vrais paramètres
+        if (parametrage != null) {  // Vérifie si l'objet parametrage est non-null
+            this.couleurContour = parametrage.getCouleurContour();
+            this.couleurRemplissage = parametrage.getCouleurRemplissage();
+            this.epaisseurContour = parametrage.getEpaisseurContour();
+        } else {
+            // Si parametrage est null, tu pourrais gérer le cas ici, par exemple en journalisant un message d'erreur
+            System.out.println("Erreur: L'objet Parametrage est null.");
+        }
     }
+
+
     //Getters et Setters
     public String getCouleurContour() {
         return couleurContour;

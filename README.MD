@@ -31,13 +31,14 @@
 <img src="/captures/12.Capture.PNG">
 <img src="/captures/13.Capture.PNG">
 <img src="/captures/14.Capture.PNG">
-
 <h2>3.implémentation AspectJ</h>
 <img src="/captures/15.Capture.PNG">
 <img src="/captures/16.Capture.PNG">
 <img src="/captures/17.Capture.PNG">
 <img src="/captures/18.Capture.PNG">
 <img src="/captures/19.Capture.PNG">
+
+<h2> mise à jour Diagramme de classe</h2>
 <img src="/captures/20.Capture.PNG">
 
 
